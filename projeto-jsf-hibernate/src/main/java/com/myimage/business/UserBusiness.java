@@ -6,7 +6,7 @@
 package com.myimage.business;
  
 import com.myimage.dao.utils.DAOFactory;
-import com.myimage.model.User;
+ 
 import com.myimage.model.dao.UserDao;
 
 /**

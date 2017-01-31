@@ -8,11 +8,39 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
-    <body>
-        admin
-        <br /><br /><br />
-        <a style="padding-right: 3px;" href="#{request.contextPath}/j_spring_security_logout">sair</a>    
-    </body>
+    <h:body>
+        <ui:composition template="/public/template_initial.xhtml">
+            <ui:define name="nav_bar">
+                <ui:include src="top_bar_admin.xhtml" />
+            </ui:define>
+            <ui:define name="container">
+                <div class="row">
+                    <div class="container" style="padding-top: 50px;">
+                        <h:panelGrid columns="2">
+                            <p:chart type="pie" id="sample" model="#{dashboard.pieModel}"
+
+                                     style="width:450px;height:350px" />
+                            <p:chart type="pie" id="custom" model="#{dashboard.pieModel}" style="width:450px;height:350px"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="4">
+                            <h:form id="impressao">
+                                <h:commandLink>
+                                    <p:fileDownload value="#{report.arquivoRetorno}" />
+                                    <h:graphicImage library="images" name="pdf.png"
+                                                    title="Imprimir PDF" />
+                                </h:commandLink>                                                
+                            </h:form>
+                            <h:messages />
+                        </h:panelGrid>
+                        <br /> <a style="padding-right: 3px;"
+                                  href="#{request.contextPath}/j_spring_security_logout">sair</a> <br />
+
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
  
     <!-- Bean referente a configuração de serviço de email criando uma instância da classe JavaMailSenderImpl de Spring Mail com as configurações para envio de e-mail usando o Gmai-->
     <bean id="mailSenderConf" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+   
         <property name="host" value="smtp.gmail.com" />
         <property name="port" value="587" />
-        <property name="username" value="seu_email_gmail" />
-        <property name="password" value="sua_senha" />
- 
+        <property name="username" value="ivoneyf.s@gmail.com" />
+        <property name="password" value="palmeiras102355" />
         
         <property name="javaMailProperties">
             <props>
@@ -25,7 +25,7 @@
         <property name="velocityEngine" ref="velocityEngineConf" />
     </bean>
     
- <!--configurando o Apache Velocity [1] que é um Template-Engine baseado em Java que fornece uma linguagem de template para referenciar objetos definidos em código Java-->
+    <!--configurando o Apache Velocity [1] que é um Template-Engine baseado em Java que fornece uma linguagem de template para referenciar objetos definidos em código Java-->
     <bean id="velocityEngineConf"
           class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
         <property name="velocityProperties">

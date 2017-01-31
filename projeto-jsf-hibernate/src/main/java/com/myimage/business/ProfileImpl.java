@@ -3,23 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.myimage.model.dao;
+package com.myimage.business;
 
-import com.myimage.model.Profile;
-import com.myimage.model.User;
 import java.util.List;
 import java.util.Properties;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 
-/**
- *
- * @author Yvonei
- */
-public class ProfileDaoImpl implements ProfileDao {
+import com.myimage.model.Profile;
+import com.myimage.model.User;
+import com.myimage.model.dao.ProfileDao;
 
-    //definido um objeto referência responsável por fornecer métodos criar, alterar, remover e acessar objetos no BD
+public class ProfileImpl implements ProfileDao {
+
     private Session session;
 
     public void setSession(Session session) {
@@ -28,15 +26,16 @@ public class ProfileDaoImpl implements ProfileDao {
 
     @Override
     public void save(Profile profile) {
-        this.session.saveOrUpdate(profile);
+        session.saveOrUpdate(profile);
     }
 
     public boolean existsEmail(String email) {
         return session.bySimpleNaturalId(Profile.class).load(email) != null ? true : false;
-
     }
 
+    @Override
     public Properties profileActives() {
+
         List<Object> objects = null;
         Properties prop = new Properties();
         Criteria criteria = this.session.createCriteria(User.class);
@@ -53,5 +52,4 @@ public class ProfileDaoImpl implements ProfileDao {
         }
         return prop;
     }
-
 }

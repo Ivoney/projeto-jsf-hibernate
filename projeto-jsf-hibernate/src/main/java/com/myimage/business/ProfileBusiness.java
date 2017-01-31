@@ -5,29 +5,40 @@
  */
 package com.myimage.business;
 
+
+import java.util.Properties;
+ 
+import com.myimage.model.dao.ProfileDao;
 import com.myimage.dao.utils.DAOFactory;
 import com.myimage.model.Profile;
-import com.myimage.model.dao.ProfileDao;
-
+ 
 /**
  *
  * @author Yvonei
  */
-//Classe que controla as regras de negocios aplicada sobre profile.
 public class ProfileBusiness {
-    private ProfileDao profileDao;
-
+ 
+    private ProfileDao ProfileDao;
+     
+     
     public ProfileBusiness() {
         super();
         setProfileDao(DAOFactory.createProfile());
+    }    
+     
+    private void setProfileDao(ProfileDao profileDao) {
+        ProfileDao = profileDao;
     }
-
-    public void setProfileDao(ProfileDao profileDao) {
-        this.profileDao = profileDao;
+ 
+    public void save(Profile Profile){
+        ProfileDao.save(Profile);
     }
-    public void save(Profile profile){
-        profileDao.save(profile);
+     
+    public boolean existsEmail(String email){
+        return ProfileDao.existsEmail(email);
     }
-    
-    
+     
+    public Properties profileActives(){
+        return ProfileDao.profileActives();
+    }
 }
